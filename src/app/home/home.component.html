@@ -3,16 +3,15 @@
     <h3>{{pageTitle}}</h3>
   </div>
   <div class="panel-body"  >
-    <div class="row" >
+    <!-- <div class="row" >
       <img src="./assets/images/logo.jpg" class="img-responsive center-block"/>
-    </div>
+    </div> -->
     <div class="row"  >
-      <h2 class="text-center">Welcome to the <b>"Guess the animal"</b> game!</h2>
-      <p class="text-center"><br>
-        To start press "<b>Start</b>" </p><br>
+      <h2 class="text-center">Welcome to the guess the animal game!</h2>
+      <h3 class="text-center" style="color: lightblue; margin-bottom: 40px">Think of an animal and answer the questions</h3>
     </div>
     <div class="row">
-      <button class="btn btn-primary btn-lg" (click)='onGoToQuiz()'>Start</button>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/question']">Start</a>
     </div>
   </div>
 </div>

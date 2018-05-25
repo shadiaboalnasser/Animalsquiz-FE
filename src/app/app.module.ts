@@ -9,13 +9,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { FooterComponent } from './footer/footer.component';
 import {appRoutes} from "./routes";
 import { HomeComponent } from './home/home.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

@@ -7,16 +7,14 @@ import { Router } from '@angular/router/';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  pageTitle:string = 'Welcome';
-  constructor(private _router:Router) { }
+  pageTitle = 'Welcome';
+  constructor(private _router: Router) { }
 
   ngOnInit() {
   }
 
-  onGoToQuiz(){
+  onGoToQuiz() {
     this._router.navigate(['/quizIntro']);
-
-
   }
 
 }
