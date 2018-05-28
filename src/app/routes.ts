@@ -4,9 +4,10 @@ import { QuestionComponent } from './question/question.component';
 
 export const appRoutes: Routes = [
 
-  {path: 'home', component: HomeComponent},
-  {path: 'question', component: QuestionComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'home', component: HomeComponent},
+  { path: 'question', component: QuestionComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: HomeComponent}
   // { path: 'events/new', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] },
   // { path: 'events', component: EventsListComponent, resolve: { events1: EventListResolver } },
   // { path: 'events/:id', component: EventDetailComponent, resolve: { event: EventResolver } },
@@ -20,6 +21,6 @@ export const appRoutes: Routes = [
   // {path:'win',component: WinComponent},
   // {path:'save',component: SavingDataComponent},
   // {path:'new/:id/:aid',component: NewQuestionComponent},
-  // {path:'',component: HomeComponent},
-  // {path:'**',component: HomeComponent}
+
+
 ];

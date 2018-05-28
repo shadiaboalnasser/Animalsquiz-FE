@@ -13,59 +13,39 @@ export class QuestionComponent implements OnInit {
   questions: IQuestion[];
   answer: IAnswer;
   answers: IAnswer[];
-  checkAnswer: boolean;
+  checkIfAnswer: boolean;
 
-  constructor(private _data: DataService,
-              private _router: Router ) { }
+  constructor(private service: DataService,
+              private router: Router ) { }
 
   ngOnInit() {
-    this.checkAnswer = false;
-    this._data.getAllQuestions().subscribe(questions => {
+    this.checkIfAnswer = false;
+
+    this.service.getAllQuestions().subscribe(questions => {
       this.questions = questions;
-      this.question = this.questions.filter(
-        question => question.id === 1)[0];
-    //  this.calcEstimated(this.question);
+      this.question = this.questions.find( (q) => {
+        return q.id === 1;
+      });
+      console.log('this question: ' , this.question);
     });
-    this._data.getAllAnswers().subscribe(a => {
-      this.answers = a;
-    });
+
+    this.service.getAllAnswers().subscribe((answers: IAnswer[]) => {
+      this.answers = answers;
+      console.log('all answers: ' , answers); });
   }
 
-  NextQuestion(isYes: boolean) {
-
-    if (this.checkAnswer) {
-      if (isYes) {
-        this._router.navigate(['/win']);
-      } else {
-
+  onClickYes() {
+    if (this.question.typeAfterYes === 'answer') {
+      this.checkIfAnswer = true;
+    } else if (this.question.typeAfterYes === 'question') {
+      const questionId = this.question.idAfterYes;
+      this.service.getQuestion(questionId).subscribe( question => {
+        this.question = question;
         console.log(this.question);
-
-        this._router.navigate(['/new', this.question.id, this.question.nextNID]);
-      }
-    } else {
-      // this.lvl = -1;
-      // this.estimatedMin = 1000;
-      // this.estimatedMax = 0;
-      const nextId = isYes ? this.question.nextYID : this.question.nextNID;
-      const nextType = isYes ? this.question.nextYType : this.question.nextNType;
-      this.checkAnswer = false;
-
-      if (nextType === 0) {
-      this.question = this.questions.filter(
-        question => question.id === nextId)[0];
-        // this.calcEstimated (this.question);
-      } else {
-        this.answer = this.answers.filter(answer => answer.id === nextId)[0];
-        this.question = {id: this.question.id, question: 'I think it is ' + this.answer.name, nextNID: nextId};
-        this.checkAnswer = true;
-      }
+        });
     }
   }
-  onYes() {
-    this.NextQuestion(true);
-  }
 
-  onNo() {
-    this.NextQuestion(false);
-  }
+  checkAnswer() {}
 }
+

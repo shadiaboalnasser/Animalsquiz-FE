@@ -1,52 +1,54 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IQuestion, IAnswer } from './data.model';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class DataService {
-    private _backEndUrl = 'http://localhost:4000/';
+    private serverUrl = 'http://localhost:4000/';
 
-    constructor(private _http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     getQuestion(id: number) {
-      return this._http.get<IQuestion[]>(this._backEndUrl + 'questions/' + id);
+      return this.http.get<IQuestion>(this.serverUrl + 'questions/' + id);
     }
 
     postQuestion(question) {
-      return this._http.post<IQuestion[]>(
-        this._backEndUrl + 'questions/' + question.id,
+      return this.http.post<IQuestion>(
+        this.serverUrl + 'questions/' + question.id,
         question
       );
     }
 
     getAllQuestions() {
-       return this._http.get<IQuestion[]>(this._backEndUrl + 'questions');
+       return this.http.get<IQuestion[]>(this.serverUrl + 'questions');
     }
 
     insertQuestion(id, doc) {
       console.log(doc);
 
-      return this._http.post(this._backEndUrl + 'questions', doc).subscribe();
+      return this.http.post(this.serverUrl + 'questions', doc).subscribe();
     }
 
     updateQuestion(id, updateObj) {
       console.log(updateObj);
 
-      return this._http.post(this._backEndUrl + 'questions/' + id, updateObj).subscribe();
+      return this.http.post(this.serverUrl + 'questions/' + id, updateObj).subscribe();
     }
 
 
-    getAllAnswers() {
-      return this._http.get<IAnswer[]>(this._backEndUrl + 'answers');
+    getAllAnswers(): Observable<IAnswer[]> {
+      return this.http.get<IAnswer[]>(this.serverUrl + 'answers');
     }
+
 
     insertAnswer(id, doc) {
       console.log(doc);
-      return this._http.post(this._backEndUrl + 'answers/' + id, doc).subscribe();
+      return this.http.post(this.serverUrl + 'answers/' + id, doc).subscribe();
     }
 
     updateAnswer(id, updateObj) {
-      return this._http.put(this._backEndUrl + 'answers/' + id, updateObj).subscribe();
+      return this.http.put(this.serverUrl + 'answers/' + id, updateObj).subscribe();
     }
 
   }
