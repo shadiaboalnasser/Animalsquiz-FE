@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
 
     this.service.getAllQuestions().subscribe(questions => {
       this.questions = questions;
+      console.log('all questions' , this.questions);
       this.question = this.questions.find( (q) => {
         return q.id === 1;
       });
@@ -34,18 +35,43 @@ export class QuestionComponent implements OnInit {
       console.log('all answers: ' , answers); });
   }
 
-  onClickYes() {
-    if (this.question.typeAfterYes === 'answer') {
-      this.checkIfAnswer = true;
-    } else if (this.question.typeAfterYes === 'question') {
-      const questionId = this.question.idAfterYes;
-      this.service.getQuestion(questionId).subscribe( question => {
-        this.question = question;
-        console.log(this.question);
-        });
+
+    onClickYes() {
+    if (this.checkIfAnswer === false) {
+
+        if (this.question.typeAfterYes === 'question') {
+          const questionId = this.question.idAfterYes;
+          this.question = this.questions.find(question => question.id === questionId);
+          console.log(this.question);
+
+        } else {
+          const answerId = this.question.idAfterYes;
+          this.answer = this.answers.find(answer => answer.id === answerId);
+         this.checkIfAnswer = true;
+      }
+
+    } else {
+      this.router.navigate(['/win']);
     }
   }
 
-  checkAnswer() {}
+  onClickNo() {
+    if (this.checkIfAnswer === false) {
+
+      if (this.question.typeAfterNo === 'question') {
+        const questionId = this.question.idAfterNo;
+        this.question = this.questions.find(question => question.id === questionId);
+        console.log(this.question);
+
+      } else {
+        const answerId = this.question.idAfterNo;
+        this.answer = this.answers.find(answer => answer.id === answerId);
+        this.checkIfAnswer = true;
+      }
+
+    } else {
+      this.router.navigate(['/new']);
+    }
+  }
 }
 

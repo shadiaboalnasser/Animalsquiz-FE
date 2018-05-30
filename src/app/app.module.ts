@@ -11,6 +11,8 @@ import {appRoutes} from './routes';
 import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import {DataService} from './data.service';
+import { NewQuestionComponent } from './new-question/new-question.component';
+import { WinComponent } from './win/win.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {DataService} from './data.service';
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    QuestionComponent
+    QuestionComponent,
+    NewQuestionComponent,
+    WinComponent
   ],
   imports: [
     BrowserModule,

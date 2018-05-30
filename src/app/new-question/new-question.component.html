@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+  <h3>Please I want to learn what you are thinking about</h3>
+    <div class="col-md-4">
+      <form #saveForm="ngForm" (ngSubmit)="save(saveForm.value)" autocomplete="off" novalidate>
+        <div class="form-group" >
+          <label for="answer">Animal:</label>
+          <em *ngIf="saveForm.controls?.answer?.invalid && (saveForm.controls.answer?.touched || mouseOver)">Required</em>
+          <input (ngModel)="answer" name="answer" required id="answer" type="text" class="form-control" placeholder="Which animal you were thinking of" />
+        </div>
+        <div class="form-group" >
+          <label for="question">Question:</label>
+          <em *ngIf="saveForm.controls.question?.invalid  && (saveForm.controls.question?.touched || mouseOver)">Required</em>
+          <input (ngModel)="question" name="question" required id="question" type="text" class="form-control" placeholder="How can I distinguish between both" />
+        </div>
+
+        <span (mouseenter)="mouseOver=true" (mouseleave)="mouseOver=false">
+      <button type="submit" [disabled]="saveForm.invalid" class="btn btn-primary">Save</button>
+    </span>
+        <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+      </form>
+      <br>
+      <div *ngIf="loginInvalid" class="alert alert-danger">Invalid Login Info</div>
+    </div>
+  <img src="../../assets/images/thinking.jpeg" style="height: 200px; margin-bottom: 20px">
+</div>
+

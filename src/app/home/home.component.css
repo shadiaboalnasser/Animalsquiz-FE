@@ -1,3 +1,33 @@
 .panel-heading{
     background-color: rgb(55, 162, 197)
 }
+h3{
+  color: rgb(55, 162, 197);
+}
+
+h4{
+  color: rgb(55, 162, 197);
+  position: relative;
+  -webkit-animation: myfirst 5s linear 2s  alternate; /* Safari 4.0 - 8.0 */
+  animation: firstAnimation 5s linear 2s  alternate;
+}
+
+a{
+  -webkit-animation: myfirst 5s linear 2s  alternate; /* Safari 4.0 - 8.0 */
+  animation: firstAnimation 5s linear 2s  alternate;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes firstAnimation {
+  0%   {color:rgb(55, 162, 197); top:0px;}
+  50%  {color:white; top:200px;}
+  100%  {color:rgb(55, 162, 197); top:0px;}
+}
+
+
+/* Standard syntax */
+@keyframes firstAnimation {
+  0%   {color:rgb(55, 162, 197); top:0px;}
+  50%  {color:white; top:200px;}
+  100%  {color:rgb(55, 162, 197); top:0px;}
+}

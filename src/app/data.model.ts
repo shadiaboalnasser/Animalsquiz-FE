@@ -1,6 +1,6 @@
 export interface IAnswer {
     id: number;
-    name: string;
+    answer: string;
   }
 
 export interface IQuestion {
