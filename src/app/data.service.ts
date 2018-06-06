@@ -14,26 +14,17 @@ export class DataService {
     }
 
     postQuestion(question) {
-      return this.http.post<IQuestion>(
-        this.serverUrl + 'questions/' + question.id,
-        question
-      );
+      return this.http.post<IQuestion>(this.serverUrl + 'questions/' , question).subscribe();
     }
 
     getAllQuestions() {
        return this.http.get<IQuestion[]>(this.serverUrl + 'questions');
     }
 
-    insertQuestion(id, doc) {
-      console.log(doc);
-
-      return this.http.post(this.serverUrl + 'questions', doc).subscribe();
-    }
-
     updateQuestion(id, updateObj) {
       console.log(updateObj);
 
-      return this.http.post(this.serverUrl + 'questions/' + id, updateObj).subscribe();
+      return this.http.put(this.serverUrl + 'questions/' + id, updateObj).subscribe();
     }
 
 
@@ -41,11 +32,14 @@ export class DataService {
       return this.http.get<IAnswer[]>(this.serverUrl + 'answers');
     }
 
-
-    insertAnswer(id, doc) {
-      console.log(doc);
-      return this.http.post(this.serverUrl + 'answers/' + id, doc).subscribe();
+    getAnswer(id: number): Observable<IAnswer> {
+      return this.http.get<IAnswer>(this.serverUrl + 'answers/' + id);
     }
+
+
+  postAnswer(answer) {
+    return this.http.post<IAnswer>(this.serverUrl + 'answers/' , answer).subscribe();
+  }
 
     updateAnswer(id, updateObj) {
       return this.http.put(this.serverUrl + 'answers/' + id, updateObj).subscribe();

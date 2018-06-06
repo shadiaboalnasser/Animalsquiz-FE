@@ -1,1 +1,6 @@
-em { float:right; color:#E05C65; padding-left:10px;position: absolute }
+em { float:right; color:#E05C65; padding-left:10px; position: absolute }
+
+img{
+  height: 200px;
+  margin-bottom: 20px
+}

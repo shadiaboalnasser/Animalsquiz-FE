@@ -70,7 +70,8 @@ export class QuestionComponent implements OnInit {
       }
 
     } else {
-      this.router.navigate(['/new']);
+      console.log(this.answer);
+      this.router.navigate(['/new', this.question.id, this.answer.id]);
     }
   }
 }

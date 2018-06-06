@@ -5,12 +5,13 @@
         <div class="form-group" >
           <label for="answer">Animal:</label>
           <em *ngIf="saveForm.controls?.answer?.invalid && (saveForm.controls.answer?.touched || mouseOver)">Required</em>
-          <input (ngModel)="answer" name="answer" required id="answer" type="text" class="form-control" placeholder="Which animal you were thinking of" />
+          <input [(ngModel)]="answer" name="answer" required id="answer" type="text" class="form-control" placeholder="Which animal you were thinking of" />
         </div>
         <div class="form-group" >
-          <label for="question">Question:</label>
+          <label for="question">Write question that distinguish {{this.answer}}:</label>
           <em *ngIf="saveForm.controls.question?.invalid  && (saveForm.controls.question?.touched || mouseOver)">Required</em>
-          <input (ngModel)="question" name="question" required id="question" type="text" class="form-control" placeholder="How can I distinguish between both" />
+          <input (ngModel)="question" name="question" required id="question" type="text" class="form-control"
+                 [disabled]="saveForm.controls?.answer?.invalid" placeholder="For instance : Does it fly?" />
         </div>
 
         <span (mouseenter)="mouseOver=true" (mouseleave)="mouseOver=false">
@@ -19,8 +20,8 @@
         <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
       </form>
       <br>
-      <div *ngIf="loginInvalid" class="alert alert-danger">Invalid Login Info</div>
+      <div *ngIf="inputInvalid" class="alert alert-danger">Invalid Login Info</div>
     </div>
-  <img src="../../assets/images/thinking.jpeg" style="height: 200px; margin-bottom: 20px">
+  <img src="../../assets/images/thinking.jpeg">
 </div>
 

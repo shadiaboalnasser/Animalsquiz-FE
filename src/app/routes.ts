@@ -8,7 +8,7 @@ export const appRoutes: Routes = [
 
   { path: 'home', component: HomeComponent},
   { path: 'question', component: QuestionComponent},
-  { path: 'new', component: NewQuestionComponent},
+  { path: 'new/:questionId/:answerId', component: NewQuestionComponent},
   { path: 'win', component: WinComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent}
